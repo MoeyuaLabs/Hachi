@@ -32,6 +32,7 @@ declare global {
   const defineLoader: typeof import('vue-router/auto')['defineLoader']
   const definePage: typeof import('unplugin-vue-router/runtime')['_definePage']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
+  const echarts: typeof import('./src/composables/echarts')['default']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
@@ -134,6 +135,7 @@ declare global {
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
   const useCached: typeof import('@vueuse/core')['useCached']
+  const useCharts: typeof import('./src/composables/echarts')['useCharts']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useClipboardItems: typeof import('@vueuse/core')['useClipboardItems']
   const useCloned: typeof import('@vueuse/core')['useCloned']
@@ -158,6 +160,7 @@ declare global {
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
+  const useElement: typeof import('./src/composables/element')['useElement']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
   const useElementByPoint: typeof import('@vueuse/core')['useElementByPoint']
   const useElementHover: typeof import('@vueuse/core')['useElementHover']
@@ -177,6 +180,7 @@ declare global {
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
   const useGeolocation: typeof import('@vueuse/core')['useGeolocation']
+  const useHachi: typeof import('./src/composables/hachi')['useHachi']
   const useIdle: typeof import('@vueuse/core')['useIdle']
   const useImage: typeof import('@vueuse/core')['useImage']
   const useInfiniteScroll: typeof import('@vueuse/core')['useInfiniteScroll']
@@ -204,6 +208,8 @@ declare global {
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
+  const useOptions: typeof import('./src/composables/options')['useOptions']
+  const useOptons: typeof import('./src/composables/options')['useOptons']
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const useParentElement: typeof import('@vueuse/core')['useParentElement']
@@ -271,6 +277,7 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
+  const waitForElement: typeof import('./src/composables/element')['waitForElement']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
   const watchAtMost: typeof import('@vueuse/core')['watchAtMost']
@@ -426,6 +433,7 @@ declare module 'vue' {
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
+    readonly useCharts: UnwrapRef<typeof import('./src/composables/echarts')['useCharts']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useClipboardItems: UnwrapRef<typeof import('@vueuse/core')['useClipboardItems']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
@@ -450,6 +458,7 @@ declare module 'vue' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
+    readonly useElement: UnwrapRef<typeof import('./src/composables/element')['useElement']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
@@ -469,6 +478,7 @@ declare module 'vue' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
+    readonly useHachi: UnwrapRef<typeof import('./src/composables/hachi')['useHachi']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
@@ -496,6 +506,7 @@ declare module 'vue' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly useOptions: UnwrapRef<typeof import('./src/composables/options')['useOptions']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
@@ -563,6 +574,7 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly waitForElement: UnwrapRef<typeof import('./src/composables/element')['waitForElement']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
@@ -712,6 +724,7 @@ declare module '@vue/runtime-core' {
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
     readonly useCached: UnwrapRef<typeof import('@vueuse/core')['useCached']>
+    readonly useCharts: UnwrapRef<typeof import('./src/composables/echarts')['useCharts']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useClipboardItems: UnwrapRef<typeof import('@vueuse/core')['useClipboardItems']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
@@ -736,6 +749,7 @@ declare module '@vue/runtime-core' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
+    readonly useElement: UnwrapRef<typeof import('./src/composables/element')['useElement']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
@@ -755,6 +769,7 @@ declare module '@vue/runtime-core' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
+    readonly useHachi: UnwrapRef<typeof import('./src/composables/hachi')['useHachi']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
     readonly useImage: UnwrapRef<typeof import('@vueuse/core')['useImage']>
     readonly useInfiniteScroll: UnwrapRef<typeof import('@vueuse/core')['useInfiniteScroll']>
@@ -782,6 +797,7 @@ declare module '@vue/runtime-core' {
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
+    readonly useOptions: UnwrapRef<typeof import('./src/composables/options')['useOptions']>
     readonly usePageLeave: UnwrapRef<typeof import('@vueuse/core')['usePageLeave']>
     readonly useParallax: UnwrapRef<typeof import('@vueuse/core')['useParallax']>
     readonly useParentElement: UnwrapRef<typeof import('@vueuse/core')['useParentElement']>
@@ -849,6 +865,7 @@ declare module '@vue/runtime-core' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly waitForElement: UnwrapRef<typeof import('./src/composables/element')['waitForElement']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

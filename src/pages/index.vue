@@ -1,46 +1,40 @@
-<script setup lang="ts" generic="T extends any, O extends any">
-defineOptions({
-  name: 'IndexPage',
-})
+<script setup lang="ts">
+import { useHachi } from '~/composables/hachi'
+import { useCharts } from '~/composables/echarts'
+import { useElement } from '~/composables/element'
 
-const name = ref('')
+const { hachi, get } = useHachi()
 
-const router = useRouter()
-function go() {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
+const chartRef = ref<HTMLElement | null>(null)
+const { elementObserver } = useElement(chartRef)
+async function initObservers() {
+  chartRef.value = await elementObserver()
+  const { dataset } = useCharts(chartRef.value)
+  watch(hachi, () => {
+    dataset.value = {
+      source: hachi.value.weights,
+    }
+  }, { immediate: true, deep: true })
 }
+
+onMounted(async () => {
+  await initObservers()
+  await get()
+})
 </script>
 
 <template>
   <div>
-    <div i-carbon-campsite inline-block text-4xl />
+    <div i-carbon-dog-walker inline-block text-4xl />
     <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
+      <a rel="noreferrer" target="_blank">
+        {{ hachi.name }} 已经 {{ }} 天了
       </a>
     </p>
     <p>
-      <em text-sm op75>Opinionated Vite Starter Template</em>
+      <em text-sm op75>生日是 {{ hachi.birthday }}</em>
     </p>
 
-    <div py-4 />
-
-    <TheInput
-      v-model="name"
-      placeholder="What's your name?"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-
-    <div>
-      <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
-      >
-        Go
-      </button>
-    </div>
+    <div ref="chartRef" h-100 w-full />
   </div>
 </template>
