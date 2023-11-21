@@ -55,6 +55,9 @@ echarts.use([
 const chart = shallowRef<echarts.ECharts>()
 
 const option = ref<ECOption>({
+  title: {
+    text: 'Hachi\'s Weight',
+  },
   tooltip: {
     axisPointer: { type: 'cross' },
   },

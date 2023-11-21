@@ -31,5 +31,15 @@ onMounted(() => {
       <div>Age <br> {{ 11 }} day</div>
     </div>
   </div>
-  <button i-carbon-add fixed bottom-16 right-8 h-16 w-16 icon-btn />
+  <div>
+    <h2 mb-2 w-full text-left>
+      History
+    </h2>
+    <div flex="~ row justify-start" w-full overflow-scroll>
+      <div v-for="weight in hachi.weights" :key="weight.date" flex="col items-center" mr-4>
+        <div>{{ weight.val }} g</div>
+        <div>{{ weight.date }}</div>
+      </div>
+    </div>
+  </div>
 </template>
