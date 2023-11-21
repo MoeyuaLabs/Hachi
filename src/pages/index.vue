@@ -24,22 +24,19 @@ onMounted(() => {
   <TheHeader>
     <RouterLink to="/settings" i-carbon-settings icon-btn />
   </TheHeader>
-  <div>
-    <div ref="chartRef" h-100 w-full />
-    <div grid="~ rows-1 cols-2" h-20>
-      <div>Birthday <br> {{ hachi.birthday }}</div>
-      <div>Age <br> {{ 11 }} day</div>
-    </div>
+  <div ref="chartRef" h-100 w-full />
+  <div grid="~ rows-1 cols-2" m-10 h-20>
+    <div>Now <br> 0.00g</div>
+    <div>Inc <br> 0.00g</div>
   </div>
   <div>
     <h2 mb-2 w-full text-left>
-      History
+      More Information
     </h2>
-    <div flex="~ row justify-start" w-full overflow-scroll>
-      <div v-for="weight in hachi.weights" :key="weight.date" flex="col items-center" mr-4>
-        <div>{{ weight.val }} g</div>
-        <div>{{ weight.date }}</div>
-      </div>
+    <div grid="~ rows-1 cols-4" w-full>
+      <div>Name <br> {{ hachi.name }}</div>
+      <div>Birthday <br> {{ hachi.birthday }}</div>
+      <div>Age <br> {{ 'xx' }} day</div>
     </div>
   </div>
 </template>
