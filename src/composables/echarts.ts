@@ -24,6 +24,7 @@ import { CanvasRenderer } from 'echarts/renderers'
 import type {
   ComposeOption,
 } from 'echarts/core'
+import { useObserver } from '~/composables/observer'
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
 export type ECOption = ComposeOption<
@@ -51,6 +52,8 @@ echarts.use([
   UniversalTransition,
 ])
 
+const chart = shallowRef<echarts.ECharts>()
+
 const option = ref<ECOption>({
   tooltip: {
     axisPointer: { type: 'cross' },
@@ -74,8 +77,10 @@ const option = ref<ECOption>({
   ],
 })
 
-const chart = shallowRef<echarts.ECharts>()
-const dataset = ref<ECOption['dataset']>(option.value.dataset)
+async function init(element: Ref<HTMLElement | null>) {
+  const { elementObserver } = useObserver()
+  chart.value = echarts.init(await elementObserver(element))
+}
 
 function update() {
   if (chart.value)
@@ -84,14 +89,14 @@ function update() {
     console.error('chart is undefined')
 }
 
-export function useCharts(ele: HTMLElement) {
-  chart.value = echarts.init(toValue(ele))
-  watch(dataset, (newVal) => {
-    option.value.dataset = newVal
+export function useCharts() {
+  watch(option, () => {
     update()
-  }, { deep: true, immediate: true })
+  }, { deep: true })
+
   return {
     chart,
-    dataset,
+    option,
+    init,
   }
 }

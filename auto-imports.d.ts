@@ -160,7 +160,7 @@ declare global {
   const useDocumentVisibility: typeof import('@vueuse/core')['useDocumentVisibility']
   const useDraggable: typeof import('@vueuse/core')['useDraggable']
   const useDropZone: typeof import('@vueuse/core')['useDropZone']
-  const useElement: typeof import('./src/composables/element')['useElement']
+  const useElement: typeof import('./src/composables/observer')['useElement']
   const useElementBounding: typeof import('@vueuse/core')['useElementBounding']
   const useElementByPoint: typeof import('@vueuse/core')['useElementByPoint']
   const useElementHover: typeof import('@vueuse/core')['useElementHover']
@@ -206,6 +206,7 @@ declare global {
   const useNetwork: typeof import('@vueuse/core')['useNetwork']
   const useNow: typeof import('@vueuse/core')['useNow']
   const useObjectUrl: typeof import('@vueuse/core')['useObjectUrl']
+  const useObserver: typeof import('./src/composables/observer')['useObserver']
   const useOffsetPagination: typeof import('@vueuse/core')['useOffsetPagination']
   const useOnline: typeof import('@vueuse/core')['useOnline']
   const useOptions: typeof import('./src/composables/options')['useOptions']
@@ -277,7 +278,7 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core')['useWindowFocus']
   const useWindowScroll: typeof import('@vueuse/core')['useWindowScroll']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
-  const waitForElement: typeof import('./src/composables/element')['waitForElement']
+  const waitForElement: typeof import('./src/composables/observer')['waitForElement']
   const watch: typeof import('vue')['watch']
   const watchArray: typeof import('@vueuse/core')['watchArray']
   const watchAtMost: typeof import('@vueuse/core')['watchAtMost']
@@ -458,7 +459,6 @@ declare module 'vue' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
-    readonly useElement: UnwrapRef<typeof import('./src/composables/element')['useElement']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
@@ -504,6 +504,7 @@ declare module 'vue' {
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
+    readonly useObserver: UnwrapRef<typeof import('./src/composables/observer')['useObserver']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOptions: UnwrapRef<typeof import('./src/composables/options')['useOptions']>
@@ -574,7 +575,6 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
-    readonly waitForElement: UnwrapRef<typeof import('./src/composables/element')['waitForElement']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>
@@ -749,7 +749,6 @@ declare module '@vue/runtime-core' {
     readonly useDocumentVisibility: UnwrapRef<typeof import('@vueuse/core')['useDocumentVisibility']>
     readonly useDraggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly useDropZone: UnwrapRef<typeof import('@vueuse/core')['useDropZone']>
-    readonly useElement: UnwrapRef<typeof import('./src/composables/element')['useElement']>
     readonly useElementBounding: UnwrapRef<typeof import('@vueuse/core')['useElementBounding']>
     readonly useElementByPoint: UnwrapRef<typeof import('@vueuse/core')['useElementByPoint']>
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
@@ -795,6 +794,7 @@ declare module '@vue/runtime-core' {
     readonly useNetwork: UnwrapRef<typeof import('@vueuse/core')['useNetwork']>
     readonly useNow: UnwrapRef<typeof import('@vueuse/core')['useNow']>
     readonly useObjectUrl: UnwrapRef<typeof import('@vueuse/core')['useObjectUrl']>
+    readonly useObserver: UnwrapRef<typeof import('./src/composables/observer')['useObserver']>
     readonly useOffsetPagination: UnwrapRef<typeof import('@vueuse/core')['useOffsetPagination']>
     readonly useOnline: UnwrapRef<typeof import('@vueuse/core')['useOnline']>
     readonly useOptions: UnwrapRef<typeof import('./src/composables/options')['useOptions']>
@@ -865,7 +865,6 @@ declare module '@vue/runtime-core' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
-    readonly waitForElement: UnwrapRef<typeof import('./src/composables/element')['waitForElement']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

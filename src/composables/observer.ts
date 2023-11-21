@@ -1,6 +1,4 @@
-let element: Ref<HTMLElement | null>
-
-function elementObserver(): Promise<HTMLElement> {
+function elementObserver(element: Ref<HTMLElement | null>): Promise<HTMLElement> {
   return new Promise((resolve) => {
     if (element.value)
       return resolve(element.value)
@@ -18,13 +16,8 @@ function elementObserver(): Promise<HTMLElement> {
   })
 }
 
-export function useElement(ele: Ref<HTMLElement | null>) {
-  element = ele
+export function useObserver() {
   return {
     elementObserver,
   }
-}
-
-export {
-  elementObserver as waitForElement,
 }

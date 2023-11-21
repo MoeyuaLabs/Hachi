@@ -1,25 +1,22 @@
 <script setup lang="ts">
 import { useHachi } from '~/composables/hachi'
 import { useCharts } from '~/composables/echarts'
-import { useElement } from '~/composables/element'
 
 const { hachi, get } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
-const { elementObserver } = useElement(chartRef)
-async function initObservers() {
-  chartRef.value = await elementObserver()
-  const { dataset } = useCharts(chartRef.value)
-  watch(hachi, () => {
-    dataset.value = {
-      source: hachi.value.weights,
-    }
-  }, { immediate: true, deep: true })
-}
 
-onMounted(async () => {
-  await initObservers()
-  await get()
+const { option, init } = useCharts()
+
+watch(hachi, () => {
+  option.value.dataset! = {
+    source: hachi.value.weights,
+  }
+}, { immediate: true, deep: true })
+
+onMounted(() => {
+  init(chartRef)
+  get()
 })
 </script>
 
