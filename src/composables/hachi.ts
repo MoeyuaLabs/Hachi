@@ -1,5 +1,5 @@
 import { ofetch } from 'ofetch'
-import { useOptions } from '~/composables/options'
+import { useSettings } from '~/composables/settings'
 
 interface Weight {
   date: string
@@ -18,8 +18,8 @@ const hachi = ref<Hachi>({
   weights: [],
 })
 
-const { options } = useOptions()
-const { key, uri } = options.value
+const { settings } = useSettings()
+const { key, uri } = settings.value
 
 async function get() {
   try {

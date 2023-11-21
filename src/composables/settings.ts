@@ -1,10 +1,10 @@
-const options = useStorage('options', {
+const settings = useStorage('settings', {
   key: '',
   uri: 'https://json.extendsclass.com/bin/e5bd9f7cbc76',
 })
 
-export function useOptions() {
+export function useSettings() {
   return {
-    options,
+    settings,
   }
 }

@@ -21,17 +21,15 @@ onMounted(() => {
 </script>
 
 <template>
+  <TheHeader>
+    <RouterLink to="/settings" i-carbon-settings icon-btn />
+  </TheHeader>
   <div>
-    <div i-carbon-dog-walker inline-block text-4xl />
-    <p>
-      <a rel="noreferrer" target="_blank">
-        {{ hachi.name }} 已经 {{ }} 天了
-      </a>
-    </p>
-    <p>
-      <em text-sm op75>生日是 {{ hachi.birthday }}</em>
-    </p>
-
     <div ref="chartRef" h-100 w-full />
+    <div grid="~ rows-1 cols-2" h-20>
+      <div>Birthday <br> {{ hachi.birthday }}</div>
+      <div>Age <br> {{ 11 }} day</div>
+    </div>
   </div>
+  <button i-carbon-add fixed bottom-16 right-8 h-16 w-16 icon-btn />
 </template>
