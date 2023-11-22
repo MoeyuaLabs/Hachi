@@ -2,24 +2,22 @@
 import { useHachi } from '~/composables/hachi'
 import { useCharts } from '~/composables/echarts'
 
-const { birthday, age, weight, increase, history, suggest, get } = useHachi()
+const { birthday, age, weight, increase, history, suggest } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
 
-const { option, init } = useCharts()
+const { chartOption, charInit } = useCharts()
 
 watch(history, (val) => {
-  option.value.dataset! = {
-    source: val,
+  chartOption.value.dataset! = {
+    // FIXME: 类型错误
+    source: toRaw(val),
   }
 }, { immediate: true, deep: true })
 
-onMounted(() => {
-  init(chartRef)
-  get()
+onMounted(async () => {
+  await charInit(chartRef)
 })
-
-// const increase
 </script>
 
 <template>

@@ -1,30 +1,27 @@
 ```mermaid
 sequenceDiagram
     participant U as User
-    participant W as Worker
     participant LS as LocalStorage
+    participant W as Worker
     participant RS as RemoteStorage
 
-    Note over U: User open page
-    U->>W: request data
-    W->>LS: request data
-    LS->>W: return data
-    W->>U: return data
+    Note over U: 用户进入页面
+    U-->LS: 建立连接
+    W-->LS: 建立连接
 
-    W->>RS: request data
-    RS->>W: return data
-    W-->>W: validate data
-    W->>LS: update data
-    W->>U: update data
+    W->>RS: 请求数据
+    RS->>W: 返回数据
+    W-->>W: 验证数据
+    W->>LS: 更新数据
 
-    Note over U: User update data
-    U->>LS: set key
-    U->>W: update data
-    W->>LS: request key
-    W->>RS: update data with key
-    RS->>W: response
-    W-->>W: validate response
-    W->>LS: update data
-    W->>U: success
+    Note over U: 用户更新数据
+    U->>LS: 设置密钥
+    W->>LS: 监听数据
 
+    U->>LS: 更新数据
+    LS->>W: 侦听到数据更新
+    W-->>W: 验证数据
+    W->>RS: 发送更新请求
+    RS->>W: 返回响应
+    W->>U: 返回操作结果
 ```

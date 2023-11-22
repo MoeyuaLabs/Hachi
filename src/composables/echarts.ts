@@ -52,7 +52,7 @@ echarts.use([
   UniversalTransition,
 ])
 
-const chart = shallowRef<echarts.ECharts>()
+const instance = shallowRef<echarts.ECharts>()
 
 const option = ref<ECOption>({
   title: {
@@ -61,13 +61,16 @@ const option = ref<ECOption>({
   tooltip: {
     axisPointer: { type: 'cross' },
   },
-  xAxis: { type: 'category', axisTick: {
-    alignWithLabel: true,
-  } },
+  xAxis: {
+    type: 'category',
+    axisTick: {
+      alignWithLabel: true,
+    },
+  },
   yAxis: {
     type: 'value',
     axisLabel: {
-      formatter: '{value}g',
+      formatter: '{value} g',
     },
   },
   dataset: {
@@ -80,26 +83,26 @@ const option = ref<ECOption>({
   ],
 })
 
-async function init(element: Ref<HTMLElement | null>) {
-  const { elementObserver } = useObserver()
-  chart.value = echarts.init(await elementObserver(element))
+function setChart() {
+  if (instance.value)
+    instance.value.setOption(option.value)
+  else console.error('chart is undefined')
 }
 
-function update() {
-  if (chart.value)
-    chart.value.setOption(option.value)
-  else
-    console.error('chart is undefined')
+async function init(element: Ref<HTMLElement | null>) {
+  const { elementObserver } = useObserver()
+  instance.value = echarts.init(await elementObserver(element))
+  setChart()
 }
 
 export function useCharts() {
   watch(option, () => {
-    update()
+    setChart()
   }, { deep: true })
 
   return {
-    chart,
-    option,
-    init,
+    chartInstance: instance,
+    chartOption: option,
+    charInit: init,
   }
 }
