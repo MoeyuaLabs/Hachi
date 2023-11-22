@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BUILD_PATH: hachi
+  BUILD_PATH: /hachi
 
 jobs:
   # 单次部署的工作描述
