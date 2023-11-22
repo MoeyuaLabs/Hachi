@@ -2,15 +2,15 @@
 import { useHachi } from '~/composables/hachi'
 import { useCharts } from '~/composables/echarts'
 
-const { hachi, get } = useHachi()
+const { birthday, age, weight, increase, history, suggest, get } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
 
 const { option, init } = useCharts()
 
-watch(hachi, () => {
+watch(history, (val) => {
   option.value.dataset! = {
-    source: hachi.value.weights,
+    source: val,
   }
 }, { immediate: true, deep: true })
 
@@ -18,6 +18,8 @@ onMounted(() => {
   init(chartRef)
   get()
 })
+
+// const increase
 </script>
 
 <template>
@@ -26,17 +28,17 @@ onMounted(() => {
   </TheHeader>
   <div ref="chartRef" h-100 w-full />
   <div grid="~ rows-1 cols-2" m-10 h-20>
-    <div>Now <br> 0.00g</div>
-    <div>Inc <br> 0.00g</div>
+    <div>Birthday <br> {{ birthday.toLocaleDateString() }}</div>
+    <div>Age <br> {{ age }} day</div>
   </div>
   <div>
     <h2 mb-2 w-full text-left>
-      More Information
+      Information
     </h2>
     <div grid="~ rows-1 cols-4" w-full>
-      <div>Name <br> {{ hachi.name }}</div>
-      <div>Birthday <br> {{ hachi.birthday }}</div>
-      <div>Age <br> {{ 'xx' }} day</div>
+      <div>Weight<br> {{ weight }} g</div>
+      <div>Increase <br> {{ increase }} g</div>
+      <div>Suggest<br> {{ suggest }} g</div>
     </div>
   </div>
 </template>
