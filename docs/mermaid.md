@@ -2,7 +2,7 @@
 sequenceDiagram
     participant U as User
     participant LS as LocalStorage
-    participant W as Worker
+    participant W as APP
     participant RS as RemoteStorage
 
     Note over U: 用户进入页面

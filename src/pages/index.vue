@@ -2,7 +2,7 @@
 import { useHachi } from '~/composables/hachi'
 import { useCharts } from '~/composables/echarts'
 
-const { birthday, age, weight, increase, history, suggest } = useHachi()
+const { birthday, age, weight, increase, history, suggest, requestHistory } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
 
@@ -17,6 +17,7 @@ watch(history, (val) => {
 
 onMounted(async () => {
   await charInit(chartRef)
+  requestHistory()
 })
 </script>
 

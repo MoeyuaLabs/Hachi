@@ -19,8 +19,17 @@ const { key, uri } = settings.value
 
 const { requestJSON, updateJSON } = useJSONStorage(uri, key)
 
-const get = requestJSON<Array<History>>
-const update = updateJSON<Array<History>>
+function isHistory(value: unknown): value is Array<History> {
+  return Array.isArray(value)
+}
+
+async function requestHistory() {
+  const data = await requestJSON<Array<History>>()
+  if (!isHistory(data))
+    return
+  // TODO 需要与本地数据合并
+  history.value = data
+}
 
 export function useHachi() {
   watchEffect(() => {
@@ -38,5 +47,6 @@ export function useHachi() {
     weight,
     increase,
     suggest,
+    requestHistory,
   }
 }
