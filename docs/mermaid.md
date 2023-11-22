@@ -16,10 +16,8 @@ sequenceDiagram
 
     Note over U: 用户更新数据
     U->>LS: 设置密钥
-    W->>LS: 监听数据
 
-    U->>LS: 更新数据
-    LS->>W: 侦听到数据更新
+    U->>LS: 添加数据
     W-->>W: 验证数据
     W->>RS: 发送更新请求
     RS->>W: 返回响应

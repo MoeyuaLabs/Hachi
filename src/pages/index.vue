@@ -2,7 +2,7 @@
 import { useHachi } from '~/composables/hachi'
 import { useCharts } from '~/composables/echarts'
 
-const { birthday, age, weight, increase, history, suggest, requestHistory } = useHachi()
+const { birthday, age, weight, increase, history, suggest, requestHistory, addWeight } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
 
@@ -23,7 +23,10 @@ onMounted(async () => {
 
 <template>
   <TheHeader>
-    <RouterLink to="/settings" i-carbon-settings icon-btn />
+    <div w-full flex justify-between>
+      <RouterLink to="/settings" i-carbon-settings icon-btn />
+      <button i-carbon-add icon-btn @click="addWeight(1)" />
+    </div>
   </TheHeader>
   <div ref="chartRef" h-100 w-full />
   <div grid="~ rows-1 cols-2" m-10 h-20>
