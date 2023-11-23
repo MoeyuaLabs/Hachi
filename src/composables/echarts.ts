@@ -57,7 +57,7 @@ const instance = shallowRef<echarts.ECharts>()
 const option = ref<ECOption>({
   title: {
     text: '',
-    left: 20,
+    left: 'center',
   },
   tooltip: {
     axisPointer: { type: 'cross' },
