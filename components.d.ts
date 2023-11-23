@@ -7,7 +7,18 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AddWeight: typeof import('./src/components/AddWeight.vue')['default']
     BaseInput: typeof import('./src/components/BaseInput.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
+    ElMain: typeof import('element-plus/es')['ElMain']
+    ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
     Header: typeof import('./src/components/Header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -15,5 +26,16 @@ declare module 'vue' {
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
     TheHeader: typeof import('./src/components/TheHeader.vue')['default']
     TheInput: typeof import('./src/components/TheInput.vue')['default']
+    TheWeightAdd: typeof import('./src/components/TheWeightAdd.vue')['default']
+    VanButton: typeof import('vant/es')['Button']
+    VanCell: typeof import('vant/es')['Cell']
+    VanContainer: typeof import('vant/es')['Container']
+    VanDatePicker: typeof import('vant/es')['DatePicker']
+    VanField: typeof import('vant/es')['Field']
+    VanForm: typeof import('vant/es')['Form']
+    VanHeader: typeof import('vant/es')['Header']
+    VanMain: typeof import('vant/es')['Main']
+    VanNavBar: typeof import('vant/es')['NavBar']
+    VanPopup: typeof import('vant/es')['Popup']
   }
 }

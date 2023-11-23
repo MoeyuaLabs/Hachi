@@ -1,5 +1,5 @@
 <template>
-  <main font-sans text="center gray-700 dark:gray-200">
+  <main text="center" max-w-md font-sans>
     <router-view v-slot="{ Component }">
       <keep-alive>
         <component :is="Component" />
