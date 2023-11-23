@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useHachi } from '~/composables/hachi'
-import { useCharts } from '~/composables/echarts'
-
 const { birthday, age, weight, history, requestHistory } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
@@ -30,9 +27,9 @@ onMounted(async () => {
     <template #left>
       <RouterLink to="/settings" i-carbon-settings icon-btn />
     </template>
-    <!-- <template #right>
+    <template #right>
       <RouterLink to="/add" i-carbon-add icon-btn />
-    </template> -->
+    </template>
   </TheHeader>
 
   <div ref="chartRef" h-100 w-full bg-white pt-2 />

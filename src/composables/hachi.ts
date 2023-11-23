@@ -26,25 +26,6 @@ function isHistory(value: unknown): value is History {
   return Array.isArray(value)
 }
 
-function isWeight(val: unknown): val is Weight {
-  if (typeof val !== 'object' || val === null)
-    return false
-  if (typeof (val as Weight).date !== 'string')
-    return false
-  if (typeof (val as Weight).weight !== 'number')
-    return false
-  return true
-}
-
-function addWeight(w: number) {
-  const date = new Date().toLocaleDateString()
-  const weight = { date, weight: w }
-  if (!isWeight(weight))
-    return
-  history.value.push(weight)
-  updateJSON(history.value)
-}
-
 async function requestHistory() {
   const data = await requestJSON<History>()
   if (!isHistory(data))
@@ -54,7 +35,7 @@ async function requestHistory() {
 }
 
 async function updateHistory() {
-  if (!isHistory(history.value))
+  if (isHistory(history.value))
     await updateJSON(history.value)
 }
 
@@ -76,6 +57,5 @@ export function useHachi() {
     suggest,
     requestHistory,
     updateHistory,
-    addWeight,
   }
 }
