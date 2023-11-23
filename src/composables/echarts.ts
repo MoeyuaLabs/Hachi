@@ -56,7 +56,8 @@ const instance = shallowRef<echarts.ECharts>()
 
 const option = ref<ECOption>({
   title: {
-    text: 'Hachi\'s Weight',
+    text: '',
+    left: 20,
   },
   tooltip: {
     axisPointer: { type: 'cross' },
@@ -69,9 +70,7 @@ const option = ref<ECOption>({
   },
   yAxis: {
     type: 'value',
-    axisLabel: {
-      formatter: '{value} g',
-    },
+    position: 'right',
   },
   dataset: {
     source: [],

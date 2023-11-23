@@ -13,6 +13,10 @@ watch(history, (val) => {
     // FIXME: 类型错误
     source: toRaw(val),
   }
+  chartOption.value.title = {
+    text: `${weight.value}g`,
+    left: 20,
+  }
 }, { immediate: true, deep: true })
 
 onMounted(async () => {
@@ -22,25 +26,22 @@ onMounted(async () => {
 </script>
 
 <template>
-  <TheHeader>
-    <div w-full flex justify-between>
+  <TheHeader left="设置" to-left="/settings" right="添加" to-right="/add">
+    <!-- <div w-full flex justify-between>
       <RouterLink to="/settings" i-carbon-settings icon-btn />
       <button i-carbon-add icon-btn @click="addWeight(1)" />
-    </div>
+    </div> -->
   </TheHeader>
-  <div ref="chartRef" h-100 w-full />
-  <div grid="~ rows-1 cols-2" m-10 h-20>
-    <div>Birthday <br> {{ birthday.toLocaleDateString() }}</div>
-    <div>Age <br> {{ age }} day</div>
-  </div>
-  <div>
-    <h2 mb-2 w-full text-left>
-      Information
+  <div ref="chartRef" h-100 w-full bg-white pt-2 />
+  <div p="x-4 y-6">
+    <h2 mb-2 w-full pl-5 text-left>
+      History
     </h2>
-    <div grid="~ rows-1 cols-4" w-full>
-      <div>Weight<br> {{ weight }} g</div>
-      <div>Increase <br> {{ increase }} g</div>
-      <div>Suggest<br> {{ suggest }} g</div>
+    <div b-rd-5 bg-white p-5>
+      <div v-for="h in history" :key="h.date" w-full flex justify-between p-2 b-b="1px solid hex-DADADB">
+        <span>{{ h.weight }} g</span>
+        <span>{{ h.date }}</span>
+      </div>
     </div>
   </div>
 </template>
