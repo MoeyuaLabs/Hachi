@@ -7,6 +7,7 @@ const weight = ref(0)
 const id = ref(nanoid())
 function submit() {
   history.value.push({
+    id: id.value,
     date: date.value,
     weight: weight.value,
   })
@@ -29,8 +30,5 @@ function submit() {
   </form>
   <button btn @click="submit">
     Submit
-  </button>
-  <button btn>
-    Reset
   </button>
 </template>

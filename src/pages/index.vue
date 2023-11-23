@@ -51,7 +51,7 @@ onMounted(async () => {
       History
     </h2>
     <div b-rd-5 bg-white px-5>
-      <div v-for="h in history" :key="h.date" w-full flex justify-between p-2 b-b="1px solid hex-DADADB">
+      <div v-for="h in history" :key="h.id" w-full flex justify-between p-2 b-b="1px solid hex-DADADB">
         <span>{{ h.weight }} g</span>
         <span>{{ h.date }}</span>
       </div>

@@ -5,9 +5,10 @@ import { useJSONStorage } from '~/composables/useJSON'
 interface Weight {
   date: string
   weight: number
+  id: string
 }
 
-type History = Array<Weight>
+export type History = Array<Weight>
 
 const name = 'はち'
 const birthday = new Date('2023/09/22')
