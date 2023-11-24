@@ -12,24 +12,32 @@ function onRecover() {
   history.value = backup
   updateHistory()
 }
+const router = useRouter()
 </script>
 
 <template>
-  <TheHeader>
-    <template #left>
-      <RouterLink to="/" i-carbon-chevron-left icon-btn />
-    </template>
-  </TheHeader>
-  <form p="y-4 x-8" b-rd-5 bg-white pb-8>
-    <BaseInput v-model="settings.key" label="Security Key" type="password" />
-    <BaseInput v-model="settings.uri" label="URI" type="url" />
-  </form>
-  <footer flex="~ justify-center">
-    <button mr-4 btn @click="onBackup">
-      Backup Data
-    </button>
-    <button btn @click="onRecover">
-      Recover Data
-    </button>
-  </footer>
+  <el-container p-4>
+    <el-header height="40px" flex="~ items-center">
+      <el-page-header @back="router.back()" />
+    </el-header>
+    <el-main>
+      <el-form label-position="top">
+        <el-form-item label="Security Key">
+          <el-input v-model="settings.key" type="password" />
+        </el-form-item>
+
+        <el-form-item label="URI">
+          <el-input v-model="settings.uri" />
+        </el-form-item>
+      </el-form>
+    </el-main>
+    <el-footer>
+      <el-button @click="onBackup">
+        Backup Data
+      </el-button>
+      <el-button @click="onRecover">
+        Recover Data
+      </el-button>
+    </el-footer>
+  </el-container>
 </template>

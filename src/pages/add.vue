@@ -35,7 +35,7 @@ const router = useRouter()
           <el-input-number v-model="weight" />
         </el-form-item>
 
-        <el-button type="primary" @click="submit">
+        <el-button @click="submit">
           Submit
         </el-button>
       </el-form>
