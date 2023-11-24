@@ -13,22 +13,32 @@ function submit() {
   })
   updateHistory()
 }
+const router = useRouter()
 </script>
 
 <template>
-  <TheHeader>
-    <template #left>
-      <RouterLink to="/" i-carbon-chevron-left icon-btn />
-    </template>
-  </TheHeader>
-  <form p="y-4 x-8" b-rd-5 bg-white pb-8>
-    <BaseInput v-model="id" label="ID" readonly color-gray />
+  <el-container p-4>
+    <el-header height="40px" flex="~ items-center">
+      <el-page-header @back="router.back()" />
+    </el-header>
+    <el-main>
+      <el-form label-position="top">
+        <el-form-item label="ID">
+          <el-input v-model="id" disabled />
+        </el-form-item>
 
-    <BaseInput v-model="date" label="Date" type="date" />
+        <el-form-item label="Date">
+          <el-date-picker v-model="date" type="date" />
+        </el-form-item>
 
-    <BaseInput v-model="weight" label="Weight (g)" type="number" />
-  </form>
-  <button btn @click="submit">
-    Submit
-  </button>
+        <el-form-item label="Weight">
+          <el-input-number v-model="weight" />
+        </el-form-item>
+
+        <el-button type="primary" @click="submit">
+          Submit
+        </el-button>
+      </el-form>
+    </el-main>
+  </el-container>
 </template>
