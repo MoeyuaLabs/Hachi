@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { weight, history, requestHistory } = useHachi()
+const { age, birthday, history, requestHistory } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
 
@@ -10,10 +10,22 @@ watch(history, (val) => {
     // FIXME: 类型错误
     source: toRaw(val),
   }
-  chartOption.value.title = {
-    text: `${weight.value}g`,
-    left: 'center',
-  }
+  chartOption.value.title
+    = [
+      {
+        text: `${age} days`,
+        subtext: 'Age',
+        left: 40,
+        itemGap: 5,
+      },
+      {
+        text: `${birthday.toLocaleDateString()}`,
+        subtext: 'Birthday',
+        right: 40,
+        itemGap: 5,
+      },
+
+    ]
 }, { immediate: true, deep: true })
 
 onMounted(async () => {
@@ -41,9 +53,8 @@ function calculateWeight(index: number) {
       <RouterLink to="/add" i-carbon-add icon-btn />
     </el-header>
     <el-main>
-      <div ref="chartRef" h-100 w-full bg-white pt-2 />
-
-      <div>
+      <div ref="chartRef" h-110 w-full bg-white py-2 />
+      <div flex="~ col-reverse">
         <div v-for="(h, i) in history" :key="h.id" mb-4 b-rd-2 bg-hex-eef1f7 p-4>
           <div mb-4 text-left color-hex-3166f1 flex="~ items-center gap-2">
             <div i-carbon-activity />
@@ -52,13 +63,14 @@ function calculateWeight(index: number) {
             {{ h.date }}
           </div>
 
-          <div flex>
+          <div flex tabular-nums>
             <div mr-8>
-              <span text-8 font-bold>{{ formatData(h.weight) }}</span> <span>g</span>
+              <span text-8 font-500>{{ formatData(h.weight) }}</span> <span>g</span>
             </div>
             <div v-if="i > 0">
-              <span i-carbon-caret-sort-up color="green" inline-block />
-              <span text-8 font-bold>{{ calculateWeight(i) }}</span> <span>g</span>
+              <span v-if="Number(calculateWeight(i)) >= 0" i-carbon-caret-sort-up color="green" inline-block />
+              <span v-else i-carbon-caret-sort-down color="red" inline-block />
+              <span text-8 font-500>{{ calculateWeight(i) }}</span> <span>g</span>
             </div>
           </div>
         </div>
