@@ -1,3 +1,3 @@
 # Hachi
 
-For my dear friend, Hachi.
+For my dear hamster, Hachi.
