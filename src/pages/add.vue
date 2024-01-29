@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { ElMessage } from 'element-plus'
 import { nanoid } from 'nanoid'
 
-const { updateHistory, history } = useHachi()
+const { history } = useHachi()
 const date = ref(new Date().toLocaleDateString())
 const weight = ref(0)
 const id = ref(nanoid())
@@ -11,7 +12,8 @@ function submit() {
     date: date.value,
     weight: weight.value,
   })
-  updateHistory()
+  ElMessage.success('Success')
+  // updateHistory()
 }
 const router = useRouter()
 </script>
@@ -28,7 +30,7 @@ const router = useRouter()
         </el-form-item>
 
         <el-form-item label="Date">
-          <el-date-picker v-model="date" type="date" />
+          <el-date-picker v-model="date" type="date" format="YYYY/MM/DD" />
         </el-form-item>
 
         <el-form-item label="Weight">

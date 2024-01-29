@@ -82,14 +82,16 @@ const option = ref<ECOption>({
   ],
 })
 
-function setChart() {
+const { elementObserver } = useObserver()
+
+async function setChart() {
+  await elementObserver(instance)
   if (instance.value)
     instance.value.setOption(option.value)
   else console.error('chart is undefined')
 }
 
 async function init(element: Ref<HTMLElement | null>) {
-  const { elementObserver } = useObserver()
   instance.value = echarts.init(await elementObserver(element))
   setChart()
 }

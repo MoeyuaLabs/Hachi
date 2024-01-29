@@ -1,11 +1,13 @@
 <script setup lang="ts">
-const { age, birthday, history, requestHistory } = useHachi()
+const { age, birthday, history } = useHachi()
 
 const chartRef = ref<HTMLElement | null>(null)
 
 const { chartOption, charInit } = useCharts()
 
-watch(history, (val) => {
+watch(history, update, { immediate: true, deep: true })
+
+function update(val: typeof history.value) {
   chartOption.value.dataset! = {
     // FIXME: 类型错误
     source: toRaw(val),
@@ -26,11 +28,11 @@ watch(history, (val) => {
       },
 
     ]
-}, { immediate: true, deep: true })
+}
 
 onMounted(async () => {
   await charInit(chartRef)
-  requestHistory()
+  update(history.value)
 })
 
 function formatData(data: number) {
